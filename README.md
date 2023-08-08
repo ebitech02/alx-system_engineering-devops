@@ -1,1 +1,1 @@
-shell variables and expansion
+shell basics, permission, variables and exapansions
