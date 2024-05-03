@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-#this script displays a loop that shows to infinity and beyond
-while :
-do
-echo "To infinity and beyond"
-sleep 2
-done
-

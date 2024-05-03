@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#this scripts displays the current pid
-echo $$
-
