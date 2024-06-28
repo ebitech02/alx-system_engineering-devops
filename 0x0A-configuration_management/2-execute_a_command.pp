@@ -1,6 +1,6 @@
-exec { 'kill killmenow process':
-command   => 'pkill -f killmenow',
-onlyif    => 'pgrep -f killmenow',
-path      => ['/bin', '/usr/bin'],
+# execute a command
+exec { 'kill-killmenow':
+command => 'pkill killmenow',
+path    => '/usr/bin',
 }
 
