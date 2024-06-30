@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#configure our ssh file so it does not require a password
+
+Host 34.202.234.100
+IdentifyFile ~/.ssh/school
+PasswordAuthentication no
+
