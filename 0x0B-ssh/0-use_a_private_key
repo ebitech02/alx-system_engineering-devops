@@ -2,5 +2,5 @@
 #define the server address
 SERVER_ADDRESS="34.202.234.100"
 
-ssh -i ~/.ssh/school ubuntu@SERVER_ADDRESS
+ssh -i ~/.ssh/school ubuntu@$SERVER_ADDRESS
 
