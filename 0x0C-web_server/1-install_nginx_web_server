@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# installs Nginx listening on port 80
+# serves a web page that prints Hello World
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo service nginx restart
+sudo ufw allow 'Nginx HTTP'
+
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www/html
+
+sudo mv /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bak
+
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+
+sudo service nginx restart
