@@ -11,7 +11,7 @@ sudo chmod -R 755 /var/www/html
 
 sudo mv /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bak
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
-sudo sed -i '/http {/a \\tserver {\n\t\tlocation / {\n\t\t\tadd_header X-Served-By $hostname;\n\t\t}\n\t' /etc/nginx/nginx.conf
+sudo sed -i '/server {/a \\t\tlocation / {\n\t\t\tadd_header X-Served-By $hostname;\n\t\t}\n\t' /etc/nginx/sites-available/default
 
 sudo nginx -t
 
