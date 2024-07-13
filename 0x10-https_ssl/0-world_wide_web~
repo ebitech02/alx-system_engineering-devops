@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# configure my domain zone so that subdomain www points to
+# load balancer
+
+#function to get subdomain information
+fetch_subdomain_info() {
+     local subdomain_name=$1
+     local domain=$2
+     local fqdn="$subdomain_name.$domain"
+     echo "fetching info for fqdn"
+     local result=$(dig +short "fqdn")
+     echo "Result: $result"
+
+    echo "$result" | awk -v sub_domain_var="$subdomain_name" '
+    NF {
+        print "The subdomain " sub_domain_var " is an A record and points to " $1
+	}'
+}
+
+domain=$1
+subdomain=$1
+
+
+default_subdomain1=www
+default_subdomain2=lb-01
+default_subdomain3=web-01
+default_subdomain4=web-02
+
+# Fetch information for each default domain if not specified
+[ -z "$subdomain" ] && fetch_subdomain_info $default_subdomain1 $domain
+[ -z "$subdomain" ] && fetch_subdomain_info $default_subdomain2 $domain
+[ -z "$subdomain" ] && fetch_subdomain_info $default_subdomain3 $domain
+[ -z "$subdomain" ] && fetch_subdomain_info $default_subdomain4 $domain
+
+# Fetch information for the specified domain
+[ -n "$subdomain" ] && fetch_subdomain_info $subdomain $domain
