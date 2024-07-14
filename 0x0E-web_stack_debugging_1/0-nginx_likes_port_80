@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# script that checks if nginx is running and if it is listening
+# on port 80
+
+apt-get update -y
+apt-get install -y nginx
+cat <<EOL > /etc/nginx/sites-available/default
+  server {
+       listen 80 default_server;
+       listen [::]:80 default_server;
+       root /var/www/html;
+       index index.html index.htm index.nginx-debian.html;
+       server_name _;
+       location / {
+           try_files \$uri \$uri/ =404;
+        }
+ }
+EOL
+nginx -t
+service nginx restart
+curl -I http://0:80
