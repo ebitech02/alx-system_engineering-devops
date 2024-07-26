@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# makes sure nginx runs as nginx user and not the superuser
+
+if ! id -u nginx > /dev/null 2>&1;
+  then
+      useradd -r nginx
+fi
+chmod 644 /etc/nginx/nginx.conf
+sed -Ei 's/\s*#?\s*user .*/user nginx/;' /etc/nginx/nginx.conf
+sed -Ei 's/(listen (\[::\]:)?80) /\1 8080 /' /etc/nginx/sites-available/default
+chown -R nginx:nginx /var/cache/nginx
+chown -R nginx:nginx /var/log/nginx
+pkill apache2
+service nginx restart
+pgrep -u nginx -lf nginx
+nc -z 0 8080 ; echo $?
+
