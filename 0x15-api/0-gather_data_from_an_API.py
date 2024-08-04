@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import json
 import sys
 from urllib.request import urlopen
