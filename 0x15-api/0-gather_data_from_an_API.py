@@ -13,14 +13,14 @@ def get_employee_id_todo_list(employee_id):
             todo_data = response.read()
 
             user = json.loads(user_data)
-            todo = json.loads(todo_dat)
+            todo = json.loads(todo_data)
 
             employee_name = user.get('name')
             completed_tasks = [task for task in todo if task.get('completed')]
             number_of_task_done = len(completed_tasks)
             total_tasks = len(todo)
 
-            print(f"Employee {employee_name} is done with tasks({number_of_task_done}/{total_tasks]):")
+            print(f"Employee {employee_name} is done with tasks({number_of_task_done}/{total_tasks}):")
             for task in completed_tasks:
                 print(f"\t {task.get('title')}")
     except Exception as e:
