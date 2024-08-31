@@ -8,11 +8,13 @@ should return 0.
 
 Modules used:
     - json: For parsing JSON data.
+    - urllib.error: For catching errors when code fails
     - urllib.request: For making HTTP requests..
 
 """
 
 import json
+import urllib.error
 import urllib.request
 
 
@@ -37,9 +39,12 @@ def number_of_subscribers(subreddit):
     # A request object with custom headers
     request = urllib.request.Request(url, headers=headers)
 
-    with urllib.request.urlopen(request) as response:
-        if response.status == 200:
-            data = json.loads(response.read().decode())
-            return data['data']['subscribers']
-        else:
-            return 0
+    try:
+        with urllib.request.urlopen(request) as response:
+            if response.status == 200:
+                data = json.loads(response.read().decode())
+                return data['data']['subscribers']
+            else:
+                return 0
+    except (urllib.error.HTTPError, urllib.error.URLError):
+        return 0
