@@ -43,7 +43,7 @@ def number_of_subscribers(subreddit):
         with urllib.request.urlopen(request) as response:
             if response.status == 200:
                 data = json.loads(response.read().decode())
-                return data['data']['subscribers']
+                return OK
             else:
                 return 0
     except (urllib.error.HTTPError, urllib.error.URLError):
