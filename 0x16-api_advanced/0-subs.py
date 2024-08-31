@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
-
 """
-
 This script fetches the total number of subscribers for a given
 subreddit. If an invalid subreddit is given, the function 
 should return 0.
@@ -10,12 +8,12 @@ should return 0.
 
 Modules used:
     - json: For parsing JSON data.
-    - urllib: For fetching data from a given url.
+    - urllib.request: For making HTTP requests..
 
 """
 
 import json
-import urllib
+import urllib.request
 
 
 def number_of_subscribers(subreddit):
@@ -24,11 +22,10 @@ def number_of_subscribers(subreddit):
 
 
     Args:
-        Subreddit (string): Subreddit to check
+        subreddit (str): Subreddit to check
     
     Returns: 
-        Int: Total subscribers.
-
+        Int: Total subscribers or 0 if invalid.
 
     """
     # URL to fetch the data from
@@ -42,8 +39,7 @@ def number_of_subscribers(subreddit):
 
     with urllib.request.urlopen(request) as response:
         if response.status == 200:
-            data = json.loads(response.read().decode()))
+            data = json.loads(response.read().decode())
             return data['data']['subscribers']
         else:
             return 0
-
