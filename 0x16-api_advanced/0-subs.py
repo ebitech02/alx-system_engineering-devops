@@ -6,8 +6,8 @@ subreddit. If an invalid subreddit is given, the function
 should return 0.
 
 Modules Used:
-    - JSON for parsing JSON data.
-    - Urllib for fetching data from a given url.
+    - json: For parsing JSON data.
+    - urllib: For fetching data from a given url.
 
 """
 
@@ -16,6 +16,11 @@ import urllib
 
 
 def number_of_subscribers(subreddit):
+    """Description: Get the total subscribers for a subreddit
+       
+       Args:
+           Subreddit (string): Subreddit to check 
+    """
     # URL to fetch the data from
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
 
