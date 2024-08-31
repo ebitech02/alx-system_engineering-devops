@@ -55,7 +55,7 @@ def employee_id_info(employee_id):
     tasks({len(completed_tasks)}/{total_tasks}):
     """)
     for task in completed_tasks:
-        print(f"\t {task}")
+        print(f"{task}")
 
 
 if __name__ == '__main__':
