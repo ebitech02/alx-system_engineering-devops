@@ -1,1 +1,2 @@
-Learning about API (Application Programming Interface) and how to use Rest API
+Learning how to fetch and format api using urllib and requests modules in python
+

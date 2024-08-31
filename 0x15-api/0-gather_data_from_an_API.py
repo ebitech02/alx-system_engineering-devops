@@ -1,34 +1,51 @@
-#!/usr/bin/python3
-
+import urllib.request
 import json
 import sys
-from urllib.request import urlopen
+"""
+The above module enables me to fetch data from a url
+parse it as a JSON format before using it
 
-def get_employee_id_todo_list(employee_id):
-    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todo_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+"""
 
-    try:
-        with urlopen(user_url) as response:
-            user_data = response.read()
-        with urlopen(todo_url) as response:
-            todo_data = response.read()
 
-            user = json.loads(user_data)
-            todo = json.loads(todo_data)
+def employee_id_info(employee_id):
 
-            employee_name = user.get('name')
-            completed_tasks = [task for task in todo if task.get('completed')]
-            number_of_task_done = len(completed_tasks)
-            total_tasks = len(todo)
+    # endpoints for fetching data
+    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    todo_url = f'''
+    https://jsonplaceholder.typicode.com/todos?userId={employee_id}
+    '''
 
-            print(f"Employee {employee_name} is done with tasks({number_of_task_done}/{total_tasks}):")
-            for task in completed_tasks:
-                print(f"\t {task.get('title')}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    # fetch user data
+    with urllib.request.urlopen(user_url) as response:
+        user_data = response.read().decode('utf-8')
+        user = json.loads(user_data)
 
-if __name__ == "__main__":
-   if len(sys.argv) != 2:
-       print("Usage: python3 script.py <employee_id>")
-       sys.exit(1)
+    # fetch todo data
+    with urllib.request.urlopen(todo_url) as response:
+        todo_data = response.read().decode('utf-8')
+        todos = json.loads(todo_data)
+
+    # process and display the result in the format specified
+    employee_name = user.get("name")
+    completed_tasks = [
+            todo["title"] for todo in todos if todo.get("completed")
+            ]
+    total_tasks = len(todos)
+
+    print(f"""
+    Employee {employee_name} is done with
+    tasks({len(completed_tasks)}/{total_tasks}):
+    """)
+    for task in completed_tasks:
+        print(f"\t {task}")
+
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        sys.exit(1)
+
+    # Ensure the employee id is been passed as an argument
+    employee_id = sys.argv[1]
+
+    employee_id_info(employee_id)
