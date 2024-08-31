@@ -51,8 +51,8 @@ def employee_id_info(employee_id):
     total_tasks = len(todos)
 
     print(
-    f"Employee {employee_name} is done with tasks("
-    f"{len(completed_tasks)}/{total_tasks}):"
+        f"Employee {employee_name} is done with tasks("
+        f"{len(completed_tasks)}/{total_tasks}):"
     )
     for task in completed_tasks:
         print(f"\t {task}")
