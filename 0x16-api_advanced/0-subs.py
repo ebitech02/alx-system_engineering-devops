@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 
+
 """
+
 This script fetches the total number of subscribers for a given
 subreddit. If an invalid subreddit is given, the function 
 should return 0.
 
-Modules Used:
+
+Modules used:
     - json: For parsing JSON data.
     - urllib: For fetching data from a given url.
 
@@ -16,10 +19,17 @@ import urllib
 
 
 def number_of_subscribers(subreddit):
-    """Description: Get the total subscribers for a subreddit
-       
-       Args:
-           Subreddit (string): Subreddit to check 
+    """
+    Description: Get the total subscribers for a subreddit
+
+
+    Args:
+        Subreddit (string): Subreddit to check
+    
+    Returns: 
+        Int: Total subscribers.
+
+
     """
     # URL to fetch the data from
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
