@@ -1,16 +1,27 @@
 #!/usr/bin/python3
 
-import urllib.request
 import json
 import sys
+import urllib.request
 """
-The above module enables me to fetch data from a url
-parse it as a JSON format before using it
+Urllib.request: used to fetch data
+Json: format data
+Sys: to fetch and pass system arguments
 
 """
 
 
 def employee_id_info(employee_id):
+    """
+    Description: Gets the employee id and formats the data received
+
+    Args:
+        Employee_id (int): Employee id.
+
+    Returns:
+        String: String of data.
+
+    """
 
     # endpoints for fetching data
     user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
