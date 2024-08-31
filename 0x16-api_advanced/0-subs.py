@@ -2,7 +2,7 @@
 
 """
 This script fetches the total number of subscribers for a given
-subreddit. If an invalid subreddit is given, the function 
+subreddit. If an invalid subreddit is given, the function
 should return 0.
 
 
@@ -23,8 +23,8 @@ def number_of_subscribers(subreddit):
 
     Args:
         subreddit (str): Subreddit to check
-    
-    Returns: 
+
+    Returns:
         Int: Total subscribers or 0 if invalid.
 
     """
