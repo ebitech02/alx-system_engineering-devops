@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 
+"""
+This script fetches and displays information about an employee's TODO
+from the JSONPlaceholder API.
+
+Modules used:
+    - urllib.request: For fetching data from URLs.
+    - json: For parsing JSON data.
+    - sys: For handling command-line arguments.
+"""
+
 import json
 import sys
 import urllib.request
-"""
-Urllib.request: used to fetch data
-Json: format data
-Sys: to fetch and pass system arguments
-
-"""
 
 
 def employee_id_info(employee_id):
