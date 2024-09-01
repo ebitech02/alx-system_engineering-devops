@@ -37,13 +37,13 @@ def number_of_subscribers(subreddit):
     headers = {'User-Agent': 'Mozilla/5.0'}
 
     # A request object with custom headers
-    request = urllib.request.Request(url, headers=headers)
+    request = urllib.request.Request(url, headers=headers, allow_redirects=False)
 
     try:
         with urllib.request.urlopen(request) as response:
             if response.status == 200:
                 data = json.loads(response.read().decode())
-                return OK
+                return ['data']['subscribers']
             else:
                 return 0
     except (urllib.error.HTTPError, urllib.error.URLError):
