@@ -9,7 +9,7 @@ return 0.
 Modules used:
     - json: For parsing JSON data.
     - urllib.error: For catching errors when code fails.
-    - urllib.request: Fpr making HTTP requests.
+    - urllib.request: For making HTTP requests.
 
 """
 
@@ -28,18 +28,18 @@ def number_of_subscribers(subreddit):
 
     Returns:
        int: total subscribers or 0 if invalid.
-
        """
-    url = "https://www.reddit.com/r/{}/about.json"
+
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {'User-Agent': 'Mozilla/5.0'}
-    request = \
+    request = 
         urllib.request.\
-        Request(url, headers=headers method='GET', allow_redirects=False)
+        Request(url, headers=headers, allow_redirects=False)
     try:
         with urllib.request.urlopen(request) as response:
             if response.status_code == 200:
                 data = json.loads(response.read().decode())
-                return ['data']['subscribers']
+                return data['data']['subscribers']
             else:
                 return 0
     except (urllib.error.HTTPError, urllib.error.URLError):
