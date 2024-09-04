@@ -32,14 +32,6 @@ service { 'apache2':
 
 exec { 'correct-phpp-php':
   command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
-  path    => '/usr/local/bin/:/bin/',
-  unless  => 'grep -q "php" /var/www/html/wp-settings.php',
-}
-
-exec { 'restart-apache':
-  command     => 'systemctl restart apache2',
-  path        => '/sbin:/usr/sbin:/bin',
-  refreshonly => true,
-  subscribe   => Exec['replace-apache'],
+  path    => ['/usr/local/bin', '/usr/bin'],
 }
 
