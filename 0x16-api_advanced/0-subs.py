@@ -30,8 +30,12 @@ def number_of_subscribers(subreddit):
        int: total subscribers or 0 if invalid.
        """
 
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {'User-Agent': 'Mozilla/5.0'}
+   # URL to fetch
+   url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+
+   # to avoid too many requests
+   headers = {'User-Agent': 'Mozilla/5.0'}
+    # A request object with custom headers
     request = 
         urllib.request.\
         Request(url, headers=headers, allow_redirects=False)
