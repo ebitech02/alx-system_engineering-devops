@@ -1,50 +1,19 @@
 #!/usr/bin/python3
-
 """
-This script fetches the total number of subscribers for a given
-subreddit. If an invalid subreddit is given, the function
-should return 0.
-
-
-Modules used:
-    - json: For parsing JSON data.
-    - urllib.error: For catching errors when code fails
-    - urllib.request: For making HTTP requests..
-
+a function that queries the Reddit API and returns the number of subscribers
 """
 
-import json
-import urllib.error
-import urllib.request
+import requests
 
 
 def number_of_subscribers(subreddit):
-    """
-    Description: Get the total subscribers for a subreddit
-
-
-    Args:
-        subreddit (str): Subreddit to check
-
-    Returns:
-        Int: Total subscribers or 0 if invalid.
-
-    """
-    # URL to fetch the data from
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-
-    # A custom User-Agent to avoid too many requests error
-    headers = {'User-Agent': 'Mozilla/5.0'}
-
-    # A request object with custom headers
-    request = urllib.request.Request(url, headers=headers)
-
-    try:
-        with urllib.request.urlopen(request) as response:
+        """Returns total number of subscribers on a given subreddit."""
+            url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+            headers = {"User-Agent": "Mozilla/5.0"}
+            response = requests.get(url, headers=headers, allow_redirects=False)
             if response.status_code == 200:
-                data = json.loads(response.read().decode())
-                return data['data']['subscribers']
+                data = response.json()
+                subscribers = data['data']['subscribers']
+                return subscribers
             else:
                 return 0
-    except (urllib.error.HTTPError, urllib.error.URLError):
-        return 0
