@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 """
+
 This script fetches the total number of subscribers for
 given subreddit. If invalid subreddit is given, the function should
 return 0.
@@ -30,14 +31,14 @@ def number_of_subscribers(subreddit):
        int: total subscribers or 0 if invalid.
        """
 
-   # URL to fetch
-   url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    # URL to fetch
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
-   # to avoid too many requests
-   headers = {'User-Agent': 'Mozilla/5.0'}
+    # to avoid too many requests
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
     # A request object with custom headers
-    request = 
-        urllib.request.\
+    request = urllib.request.\
         Request(url, headers=headers, allow_redirects=False)
     try:
         with urllib.request.urlopen(request) as response:
