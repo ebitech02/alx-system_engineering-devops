@@ -11,6 +11,13 @@ file { '/var/www/html':
   mode   =>  '0755',
 }
 
+file { '/var/www/html/directory':
+  ensure => directory,
+  owner  => 'www-data',
+  group  => 'www-data',
+  mode   => '0755',
+}
+
 file { '/var/log/apache2':
   ensure => directory,
   owner  =>  'www-data',
