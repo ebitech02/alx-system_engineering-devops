@@ -31,7 +31,7 @@ def number_of_subscribers(subreddit):
 
     """
     # URL to fetch the data from
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
     # A custom User-Agent to avoid too many requests error
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -41,7 +41,7 @@ def number_of_subscribers(subreddit):
 
     try:
         with urllib.request.urlopen(request) as response:
-            if response.status == 200:
+            if response.status_code == 200:
                 data = json.loads(response.read().decode())
                 return data['data']['subscribers']
             else:
