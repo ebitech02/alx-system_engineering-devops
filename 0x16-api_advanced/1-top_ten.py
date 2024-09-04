@@ -15,12 +15,16 @@ def top_ten(subreddit):
 
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
-        if response.status_code == 200:
-            data = response.json()
-            posts = data.get('data', {}).get('children', [])
-            for post in posts[:10]:
-                print(post['data']['title'])
-        else:
+        if response.status_code != 200 or 'application/json' \
+                not in response.headers.get('Content-Type', ''):
             print(None)
-    except Exception:
+            return
+        data = response.json()
+        posts = data.get('data', {}).get('children', [])
+
+        # Print the titles of the top 10 posts
+        for i in range(min(10, len(posts))):
+            print(posts[i]['data']['title'])
+
+    except requests.RequestException:
         print(None)
